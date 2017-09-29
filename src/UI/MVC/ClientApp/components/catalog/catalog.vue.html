@@ -1,0 +1,25 @@
+<template>
+    <div>
+            <section class="esh-catalog-hero">
+                    <div class="container">
+                        <img class="esh-catalog-title" src="images/main_banner_text.png" />
+                    </div>
+                </section>
+                
+    <section class="esh-catalog-hero">
+        <div class="container">
+            <form asp-action="Index" asp-controller="Catalog" method="post">
+                <label class="esh-catalog-label" data-title="brand">
+                    <select></select>
+                </label>
+                <label class="esh-catalog-label" data-title="type">
+                    <select class="esh-catalog-filter"></select>
+                </label>
+                <input class="esh-catalog-send" type="image" src="images/arrow-right.svg" />
+            </form>
+        </div>        
+    </section>        
+    <div class="container"></div>
+</div>
+</template>
+<script src="./catalog.ts"></script>
