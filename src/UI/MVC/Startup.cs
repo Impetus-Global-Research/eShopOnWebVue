@@ -37,8 +37,8 @@ namespace eShopOnWebVue
             {
                 try
                 {
-                    c.UseInMemoryDatabase("Catalog");
-                    //c.UseSqlServer(Configuration.GetConnectionString("CatalogConnection"));
+                    //c.UseInMemoryDatabase("Catalog");
+                    c.UseSqlServer(Configuration.GetConnectionString("CatalogConnection"));
                 }
                 catch (System.Exception ex )
                 {
@@ -47,8 +47,8 @@ namespace eShopOnWebVue
             });
 
             services.AddDbContext<AppIdentityDbContext>(options =>
-                options.UseInMemoryDatabase("Identity"));
-                //options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+                //options.UseInMemoryDatabase("Identity"));
+                options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>()

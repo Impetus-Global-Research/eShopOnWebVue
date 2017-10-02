@@ -35,7 +35,7 @@ namespace eShopOnWebVue.Services
 
         public async Task<CatalogIndexViewModel> GetCatalogItems(int pageIndex, int itemsPage, int? brandId, int? typeId)
         {
-            _logger.LogInformation("GetCatalogItems called.");
+            _logger.LogInformation($"GetCatalogItems called. page:{pageIndex}; itemsPage:{itemsPage}; brand:{brandId}; type:{typeId}");
 
             var filterSpecification = new CatalogFilterSpecification(brandId, typeId);
             var root = _itemRepository.List(filterSpecification);

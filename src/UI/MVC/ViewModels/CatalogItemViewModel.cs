@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace eShopOnWebVue.ViewModels
 {
-
     public class CatalogItemViewModel
     {
         public int Id { get; set; }

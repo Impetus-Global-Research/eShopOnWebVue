@@ -77,7 +77,7 @@ namespace eShopOnWebVue.Controllers
         {
             await _signInManager.SignOutAsync();
 
-            return RedirectToAction(nameof(CatalogController.Index), "Catalog");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         [AllowAnonymous]
@@ -114,7 +114,7 @@ namespace eShopOnWebVue.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(CatalogController.Index), "Catalog");
+                return RedirectToAction(nameof(HomeController.Index), "Home");
             }
         }
 

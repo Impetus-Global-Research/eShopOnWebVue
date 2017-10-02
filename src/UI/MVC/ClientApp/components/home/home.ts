@@ -6,5 +6,6 @@ import { Component } from 'vue-property-decorator';
         CatalogComponent: require('../catalog/catalog.vue.html')
     }
 })
-export default class HomeComponent extends Vue {
+
+export default class HomeComponent extends Vue {    
 }
