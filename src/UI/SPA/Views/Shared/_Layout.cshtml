@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SPA</title>
+    <base href="~/" />
+
+    <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/dist/app.component.css" />
+        <link rel="stylesheet" href="~/dist/basket/basket.component.css" />
+        <link rel="stylesheet" href="~/dist/catalog/pager.css" />
+  	    <link rel="stylesheet" href="~/dist/catalog/catalog.component.css" />
+        <link rel="stylesheet" href="~/dist/basket/basket-status/basket-status.component.css" />
+        <link rel="stylesheet" href="~/dist/orders/orders.component.css" />
+        <link rel="stylesheet" href="~/dist/app.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    @RenderBody()
+
+    <script src="~/dist/vendor.js" asp-append-version="true"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

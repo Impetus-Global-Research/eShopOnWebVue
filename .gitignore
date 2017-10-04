@@ -12,6 +12,8 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+node_modules/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -29,7 +31,6 @@ Obj/
 # Visual Studio 2015 cache/options directory
 .vs/
 /wwwroot/dist/
-
 /yarn.lock
 
 # MSTest test Results
