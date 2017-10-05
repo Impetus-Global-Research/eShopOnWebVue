@@ -1,32 +1,53 @@
 <template>
-    <nav class="navbar navbar-toggleable-md fixed-top">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>       
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <section class="col-lg-7 col-md-6 col-xs-12">
-                <router-link to="/" :exact="true">
-                    <img src="images/brand.png" alt="eShop On Web"/>
-                </router-link>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                            <router-link to="/counter">
-                                <span class="glyphicon glyphicon-education"></span> Counter
-                            </router-link>
-                    </li>
-                    <li class="nav-item">
-                            <router-link to="/fetchdata">
-                                <span class="glyphicon glyphicon-th-list"></span> Fetch data
-                            </router-link>
-                    </li>                    
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </section>                      
+<nav class="navbar navbar-clean">
+    <div class="container-fluid">        
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only glyphicon glyphicon-menu"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>        
+            <router-link to="/" :exact="true">
+                <img src="images/brand.png" alt="eShop On Web"/>
+            </router-link>        
         </div>
-    </nav>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="nav-item active">
+                    <router-link to="/counter">
+                        <span class="glyphicon glyphicon-education"></span> Counter
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/fetchdata">
+                        <span class="glyphicon glyphicon-th-list"></span> Fetch data
+                    </router-link>
+                </li> 
+            </ul>
+            <ul class="nav navbar-nav navbar-right hide">
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                    </li>
+                </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <label class="esh-catalog-label" data-title="search">
+                        <input type="text" class="esh-catalog-filter">
+                    </label>
+                </div>
+                <button type="submit" class="btn esh-search-send"><i class="glyphicon glyphicon-search"></i></button>
+            </form>            
+        </div>
+    </div>
+</nav>
 </template>
-
 <style src="./navmenu.css" />

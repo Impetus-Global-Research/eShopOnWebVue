@@ -1,3 +1,5 @@
+import '../../css/catalog/pager.css';
+import './catalog.css';
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { ICatalogIndex } from '../../interfaces/ICatalogIndex.interface'

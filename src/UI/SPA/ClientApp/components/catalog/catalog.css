@@ -1,6 +1,5 @@
 .esh-catalog-hero {
     background-image: url("../../../wwwroot/images/main_banner.png");
-    background-repeat: no-repeat;
     background-size: cover;
     height: 260px;
     width: 100%;
@@ -69,9 +68,10 @@
     background-color: #83D01B;
     color: #FFFFFF;
     cursor: pointer;
-    font-size: 1rem;
     transition: all 0.35s;
-    margin-bottom: -3px;
+    margin-top: -25px;
+    width: 46px;
+    height: 46px;
 }
 
 .esh-catalog-send:hover {
@@ -123,11 +123,13 @@
 .esh-catalog-button.is-disabled {
     opacity: .5;
     pointer-events: none;
+    color: #FFFFFF;
 }
 
 .esh-catalog-button:hover {
     background-color: #4a760f;
     transition: all 0.35s;
+    color: #FFFFFF;
 }
 
 .esh-catalog-name {

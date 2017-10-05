@@ -1,11 +1,5 @@
 <template>
-<div>
-    <section class="esh-catalog-hero">
-    <div class="container">
-    <img class="esh-catalog-title" src="images/main_banner_text.png" />
-    </div>
-    </section>
-                
+<div>           
     <section>
         <div class="container">            
                 <label class="esh-catalog-label" data-title="brand">
@@ -18,14 +12,14 @@
                         <option v-for="type in catalog.types":disabled="type.disabled" :selected="type.selected" :value="type.value">{{ type.text }}</option>
                     </select>
                 </label>
-                <input class="esh-catalog-send" type="image" src="images/arrow-right.svg" v-on:click="getCatalog" />            
+                <input class="btn esh-catalog-send" type="image" src="images/arrow-right.svg" v-on:click="getCatalog" />            
         </div>        
     </section>
     <div class="container">
         <div v-if="catalog.catalogItems" class="esh-catalog-items row">            
                 <div class="esh-catalog-item col-md-4" v-for="product in catalog.catalogItems">
                     <img class="esh-catalog-thumbnail" :src="product.pictureUri" />
-                    <input class="esh-catalog-button" type="submit" value="[ ADD TO BASKET ]" />
+                    <input class="btn esh-catalog-button" type="submit" value="[ ADD TO BASKET ]" />
                 
                     <div class="esh-catalog-name">
                         <span>{{ product.name }}</span>
@@ -40,4 +34,3 @@
 </div>
 </template>
 <script src="./catalog.ts"></script>
-<style src="./catalog.css" />
