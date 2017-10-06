@@ -1,29 +1,40 @@
-import '../../css/catalog/pager.css';
-import './catalog.css';
-import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import '../../css/catalog/pager.css'
+import './catalog.css'
+import Vue from 'vue'
+import { Component } from 'vue-property-decorator'
 import { ICatalogIndex } from '../../interfaces/ICatalogIndex.interface'
 import { CatalogViewModel } from '../../classes/catalogIndex.type'
+import { getCatalog } from '../../api/catalog.api'
 
 @Component
 export default class CatalogComponent extends Vue {
-    catalog: ICatalogIndex = new CatalogViewModel();
-    
+    catalog: ICatalogIndex = new CatalogViewModel()
         mounted() {
-            this.getCatalog();            
+            this.execGetCatalog()
+            //console.log('Vene Mounted')
         }   
+/*
+        created(){
+            console.log('Vene created')
+        }
 
-        getCatalog():void{                     
-            var params: string[] = []  
-            if(this.catalog.brandFilterApplied) params.push("brandFilterApplied="+this.catalog.brandFilterApplied)
-            if(this.catalog.typesFilterApplied) params.push("typesFilterApplied="+this.catalog.typesFilterApplied)            
-            
-            var url: string = 'api/Catalog/Get/?' + params.join("&")
+        beforeCreate(){
+            console.log('Vene before-created')
+        }
 
-            fetch(url)
+        beforeDestroy(){
+            console.log('Vene before-destroy')
+        }
+
+        beforeMount(){
+            console.log('Vene before-Mounted')
+        }
+*/
+        execGetCatalog():void{
+            getCatalog(this.catalog)
             .then(response => response.json() as Promise<ICatalogIndex>)
             .then(data => {
-                this.catalog = data;                
+                this.catalog = data
             });
-        }
+        }    
 }

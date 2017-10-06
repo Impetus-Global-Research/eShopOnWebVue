@@ -12,7 +12,7 @@
                         <option v-for="type in catalog.types":disabled="type.disabled" :selected="type.selected" :value="type.value">{{ type.text }}</option>
                     </select>
                 </label>
-                <input class="btn esh-catalog-send" type="image" src="images/arrow-right.svg" v-on:click="getCatalog" />            
+                <input class="btn esh-catalog-send" type="image" src="images/arrow-right.svg" @click="execGetCatalog" />
         </div>        
     </section>
     <div class="container">
