@@ -4,37 +4,22 @@ import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 import { ICatalogIndex } from '../../interfaces/ICatalogIndex.interface'
 import { CatalogViewModel } from '../../classes/catalogIndex.type'
-import { getCatalog } from '../../api/catalog.api'
+
 
 @Component
-export default class CatalogComponent extends Vue {
-    catalog: ICatalogIndex = new CatalogViewModel()
-        mounted() {
-            this.execGetCatalog()
-            //console.log('Vene Mounted')
-        }   
-/*
-        created(){
-            console.log('Vene created')
-        }
+export default class CatalogComponent extends Vue {    
+    catalogIndex: ICatalogIndex = new CatalogViewModel()
 
-        beforeCreate(){
-            console.log('Vene before-created')
-        }
+    mounted() {
+        this.execGetCatalog()
+    }   
 
-        beforeDestroy(){
-            console.log('Vene before-destroy')
-        }
+    get catalog(){
+        return this.catalogIndex = this.$store.getters.getCatalogIndex
+    }
 
-        beforeMount(){
-            console.log('Vene before-Mounted')
-        }
-*/
-        execGetCatalog():void{
-            getCatalog(this.catalog)
-            .then(response => response.json() as Promise<ICatalogIndex>)
-            .then(data => {
-                this.catalog = data
-            });
-        }    
+    execGetCatalog():void{
+        this.$store.dispatch('FETCH_CATALOG_DATA', this.catalogIndex)  
+    }    
+    
 }

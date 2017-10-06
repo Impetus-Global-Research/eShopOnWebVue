@@ -42,6 +42,11 @@ namespace SPA.Services
             });
         }
 
+        public async Task<CatalogIndexViewModel> GetCatalogItems(CatalogIndexViewModel model)
+        {
+            throw new Exception("");
+        }
+
         public async Task<IEnumerable<SelectListItem>> GetTypes()
         {
             return await _cache.GetOrCreateAsync(_typesKey, async entry =>

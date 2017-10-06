@@ -19,5 +19,10 @@ namespace SPA.Controllers
             CatalogIndexViewModel catalogModel = await _catalogService.GetCatalogItems(page ?? 0, itemsPage, brandFilterApplied, typesFilterApplied);
             return catalogModel;
         }        
+
+        [HttpGet("[action]")]
+        public async Task<CatalogIndexViewModel> Search(CatalogIndexViewModel model){
+            return await _catalogService.GetCatalogItems(model);
+        }
     }
 }

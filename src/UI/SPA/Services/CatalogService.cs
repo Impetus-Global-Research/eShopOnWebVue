@@ -33,6 +33,11 @@ namespace SPA.Services
             _uriComposer = uriComposer;
         }
 
+    public async Task<CatalogIndexViewModel> GetCatalogItems(CatalogIndexViewModel model)
+    {
+        return await this.GetCatalogItems(model.PaginationInfo.ActualPage, model.PaginationInfo.ItemsPerPage, model.BrandFilterApplied, model.TypesFilterApplied);
+    }
+
         public async Task<CatalogIndexViewModel> GetCatalogItems(int pageIndex, int itemsPage, int? brandId, int? typeId)
         {
             _logger.LogInformation($"GetCatalogItems called. page:{pageIndex}; itemsPage:{itemsPage}; brand:{brandId}; type:{typeId}");
