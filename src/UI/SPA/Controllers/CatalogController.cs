@@ -12,16 +12,16 @@ namespace SPA.Controllers
 
         public CatalogController(ICatalogService catalogService) => _catalogService = catalogService;       
         
-        [HttpGet("[action]")]
-        public async Task<CatalogIndexViewModel> Get(int? brandFilterApplied, int? typesFilterApplied, int? page)
+        [HttpPost("[action]")]
+        public async Task<CatalogIndexViewModel> Post([FromBody] CatalogFilterViewModel model)
         {
-            int itemsPage = 10;           
-            CatalogIndexViewModel catalogModel = await _catalogService.GetCatalogItems(page ?? 0, itemsPage, brandFilterApplied, typesFilterApplied);
+            model.PaginationInfo.ItemsPerPage = 10;            
+            CatalogIndexViewModel catalogModel = await _catalogService.GetCatalogItems(model);
             return catalogModel;
         }        
 
         [HttpGet("[action]")]
-        public async Task<CatalogIndexViewModel> Search(CatalogIndexViewModel model){
+        public async Task<CatalogIndexViewModel> Search(CatalogFilterViewModel model){
             return await _catalogService.GetCatalogItems(model);
         }
     }

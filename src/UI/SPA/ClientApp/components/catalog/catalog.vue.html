@@ -3,12 +3,12 @@
     <section>
         <div class="container">            
                 <label class="esh-catalog-label" data-title="brand">
-                    <select class="esh-catalog-filter" v-model.lazy="catalog.brandFilterApplied">
+                    <select class="esh-catalog-filter" v-model.lazy="catalogFilter.BrandFilterApplied">
                         <option v-for="brand in catalog.brands" :disabled="brand.disabled" :selected="brand.selected" :value="brand.value">{{ brand.text }}</option>
                     </select>
                 </label>
                 <label class="esh-catalog-label" data-title="type">
-                    <select class="esh-catalog-filter" v-model.lazy="catalog.typesFilterApplied">
+                    <select class="esh-catalog-filter" v-model.lazy="catalogFilter.TypesFilterApplied">
                         <option v-for="type in catalog.types":disabled="type.disabled" :selected="type.selected" :value="type.value">{{ type.text }}</option>
                     </select>
                 </label>

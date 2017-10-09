@@ -9,18 +9,21 @@ namespace ApplicationCore.Specifications
 
     public class CatalogFilterSpecification : ISpecification<CatalogItem>
     {
-        public CatalogFilterSpecification(int? brandId, int? typeId)
+        public CatalogFilterSpecification(int? brandId, int? typeId, string textSearch)
         {
             BrandId = brandId;
             TypeId = typeId;
+            TextSearch = textSearch;
         }
 
         public int? BrandId { get; }
         public int? TypeId { get; }
+        public string TextSearch { get; }
 
         public Expression<Func<CatalogItem, bool>> Criteria => 
             i => (!BrandId.HasValue || i.CatalogBrandId == BrandId) && 
-                (!TypeId.HasValue || i.CatalogTypeId == TypeId);
+                (!TypeId.HasValue || i.CatalogTypeId == TypeId) && 
+                ((TextSearch == String.Empty) || i.Name.Contains(TextSearch));
 
         public List<Expression<Func<CatalogItem, object>>> Includes { get; }  = new List<Expression<Func<CatalogItem, object>>>();
 

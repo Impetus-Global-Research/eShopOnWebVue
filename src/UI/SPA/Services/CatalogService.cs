@@ -32,24 +32,18 @@ namespace SPA.Services
             _typeRepository = typeRepository;
             _uriComposer = uriComposer;
         }
+    
 
-    public async Task<CatalogIndexViewModel> GetCatalogItems(CatalogIndexViewModel model)
-    {
-        return await this.GetCatalogItems(model.PaginationInfo.ActualPage, model.PaginationInfo.ItemsPerPage, model.BrandFilterApplied, model.TypesFilterApplied);
-    }
-
-        public async Task<CatalogIndexViewModel> GetCatalogItems(int pageIndex, int itemsPage, int? brandId, int? typeId)
+        public async Task<CatalogIndexViewModel> GetCatalogItems(CatalogFilterViewModel model)
         {
-            _logger.LogInformation($"GetCatalogItems called. page:{pageIndex}; itemsPage:{itemsPage}; brand:{brandId}; type:{typeId}");
-
-            var filterSpecification = new CatalogFilterSpecification(brandId, typeId);
+            CatalogFilterSpecification filterSpecification = new CatalogFilterSpecification(model.BrandFilterApplied, model.TypesFilterApplied, model.TextSearch);
             var root = _itemRepository.List(filterSpecification);
 
             var totalItems = root.Count();
 
             var itemsOnPage = root
-                .Skip(itemsPage * pageIndex)
-                .Take(itemsPage)
+                .Skip(model.PaginationInfo.ItemsPerPage * model.PaginationInfo.ActualPage)
+                .Take(model.PaginationInfo.ItemsPerPage)
                 .ToList();
 
             itemsOnPage.ForEach(x =>
@@ -57,7 +51,7 @@ namespace SPA.Services
                 x.PictureUri = _uriComposer.ComposePicUri(x.PictureUri);
             });
 
-            var vm = new CatalogIndexViewModel()
+            CatalogIndexViewModel vm = new CatalogIndexViewModel()
             {
                 CatalogItems = itemsOnPage.Select(i => new CatalogItemViewModel()
                 {
@@ -67,21 +61,22 @@ namespace SPA.Services
                     Price = i.Price
                 }),
                 Brands = await GetBrands(),
-                Types = await GetTypes(),
-                BrandFilterApplied = brandId ?? 0,
-                TypesFilterApplied = typeId ?? 0,
-                PaginationInfo = new PaginationInfoViewModel()
-                {
-                    ActualPage = pageIndex,
-                    ItemsPerPage = itemsOnPage.Count,
-                    TotalItems = totalItems,
-                    TotalPages = int.Parse(Math.Ceiling(((decimal)totalItems / itemsPage)).ToString())
-                }
+                Types = await GetTypes()                
             };
 
-            vm.PaginationInfo.Next = (vm.PaginationInfo.ActualPage == vm.PaginationInfo.TotalPages - 1) ? "is-disabled" : "";
-            vm.PaginationInfo.Previous = (vm.PaginationInfo.ActualPage == 0) ? "is-disabled" : "";
-
+            vm.CatalogFilter.BrandFilterApplied = model.BrandFilterApplied ?? 0;
+            vm.CatalogFilter.TypesFilterApplied = model.TypesFilterApplied ?? 0;
+            vm.CatalogFilter.PaginationInfo = new PaginationInfoViewModel()
+            {                    
+                ActualPage = model.PaginationInfo.ActualPage,
+                ItemsPerPage = itemsOnPage.Count,
+                TotalItems = totalItems,
+                TotalPages = int.Parse(Math.Ceiling(((decimal)totalItems / model.PaginationInfo.ItemsPerPage)).ToString())
+            };
+            vm.CatalogFilter.PaginationInfo.Next = (vm.CatalogFilter.PaginationInfo.ActualPage == vm.CatalogFilter.PaginationInfo.TotalPages - 1) ? "is-disabled" : "";
+            vm.CatalogFilter.PaginationInfo.Previous = (vm.CatalogFilter.PaginationInfo.ActualPage == 0) ? "is-disabled" : "";
+            vm.CatalogFilter.TextSearch = model.TextSearch ?? string.Empty;
+            
             return vm;
         }
 

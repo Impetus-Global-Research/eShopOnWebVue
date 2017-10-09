@@ -13,7 +13,7 @@ namespace SPA.Services
         private readonly CatalogService _catalogService;
         private static readonly string _brandsKey = "brands";
         private static readonly string _typesKey = "types";
-        private static readonly string _itemsKeyTemplate = "items-{0}-{1}-{2}-{3}";
+        private static readonly string _itemsKeyTemplate = "items-{0}-{1}-{2}-{3}-{4}";
         private static readonly TimeSpan _defaultCacheDuration = TimeSpan.FromSeconds(30);
 
         public CachedCatalogService(IMemoryCache cache,
@@ -32,20 +32,15 @@ namespace SPA.Services
                     });
         }
 
-        public async Task<CatalogIndexViewModel> GetCatalogItems(int pageIndex, int itemsPage, int? brandID, int? typeId)
+        public async Task<CatalogIndexViewModel> GetCatalogItems(CatalogFilterViewModel model)
         {
-            string cacheKey = String.Format(_itemsKeyTemplate, pageIndex, itemsPage, brandID, typeId);
+            string cacheKey = String.Format(_itemsKeyTemplate, model.PaginationInfo.ActualPage, model.PaginationInfo.ItemsPerPage, model.BrandFilterApplied, model.TypesFilterApplied, model.TextSearch);
             return await _cache.GetOrCreateAsync(cacheKey, async entry =>
             {
                 entry.SlidingExpiration = _defaultCacheDuration;
-                return await _catalogService.GetCatalogItems(pageIndex, itemsPage, brandID, typeId);
+                return await _catalogService.GetCatalogItems(model);
             });
-        }
-
-        public async Task<CatalogIndexViewModel> GetCatalogItems(CatalogIndexViewModel model)
-        {
-            throw new Exception("");
-        }
+        }        
 
         public async Task<IEnumerable<SelectListItem>> GetTypes()
         {

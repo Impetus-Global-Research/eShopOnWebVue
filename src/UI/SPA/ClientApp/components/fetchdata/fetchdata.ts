@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+import axios from 'axios'
 
 interface WeatherForecast {
     dateFormatted: string;
@@ -13,8 +14,8 @@ export default class FetchDataComponent extends Vue {
     forecasts: WeatherForecast[] = [];
 
     mounted() {
-        fetch('api/SampleData/WeatherForecasts')
-            .then(response => response.json() as Promise<WeatherForecast[]>)
+        axios.get('api/SampleData/WeatherForecasts')
+            .then(response => response.data as Promise<WeatherForecast[]>)
             .then(data => {
                 this.forecasts = data;
             });

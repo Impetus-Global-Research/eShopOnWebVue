@@ -41,13 +41,14 @@
             <form class="navbar-form navbar-left">
                 <div class="form-group">
                     <label class="esh-catalog-label" data-title="search">
-                        <input type="text" class="esh-catalog-filter">
+                        <input type="text" class="esh-catalog-filter" v-model="catalogFilter.TextSearch">
                     </label>
                 </div>
-                <button type="button" class="btn esh-search-send" @click="function(){console.log($refs.compCatalog);}"><i class="glyphicon glyphicon-search"></i></button>
+                <button type="button" class="btn esh-search-send" @click="execSearchCatalog"><i class="glyphicon glyphicon-search"></i></button>
             </form>            
         </div>
     </div>
 </nav>
 </template>
 <style src="./navmenu.css" />
+<script src="./navmenu.ts"></script>

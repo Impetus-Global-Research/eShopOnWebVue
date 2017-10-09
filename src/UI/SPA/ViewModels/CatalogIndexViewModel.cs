@@ -6,11 +6,14 @@ namespace SPA.ViewModels
 {
     public class CatalogIndexViewModel
     {
+        public CatalogFilterViewModel CatalogFilter { get; set; }
+
         public IEnumerable<CatalogItemViewModel> CatalogItems { get; set; }
         public IEnumerable<SelectListItem> Brands { get; set; }
-        public IEnumerable<SelectListItem> Types { get; set; }
-        public int? BrandFilterApplied { get; set; }
-        public int? TypesFilterApplied { get; set; }
-        public PaginationInfoViewModel PaginationInfo { get; set; }
+        public IEnumerable<SelectListItem> Types { get; set; }      
+
+       public CatalogIndexViewModel(){
+           this.CatalogFilter = new CatalogFilterViewModel();
+       }  
     }
 }
