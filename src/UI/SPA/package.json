@@ -26,7 +26,7 @@
         "webpack-hot-middleware": "^2.19.1"
     },
     "dependencies": {
-        "axios": "^0.16.2",
+        "axios": "^0.21.1",
         "vuex": "^2.4.0"
     }
 }
